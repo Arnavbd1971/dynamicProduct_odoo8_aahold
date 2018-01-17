@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Top menu -->
+        <menuitem name="Daynamic Product" id="custom_top_menu" />
+        <!-- Sub child menu -->
+        <menuitem name="Daynamic Product" id ="custom_sub_menu" parent="custom_top_menu"/>
+
+        <!-- <tree view start> -->
+            <record id="view_dynamic_product_tree" model="ir.ui.view">
+                <field name="name">dynamic.product.tree</field>
+                <field name="model">product.template</field>
+                <field name="priority" eval="8" />
+                <field name="arch" type="xml">
+                    <tree string="Daynamic_Product" default_order="id desc">
+                        <field name="combined_name"/>
+                        <field name="hs_code"/>
+                        <field name="list_price"/>
+                        <field name="ring_spun_count"/> 
+                        <field name="twist_count"/>
+                        <field name="compact_state"/>
+                        <field name="process"/>
+                        <field name="trade_name"/>
+                        <field name="yarn_process"/> 
+                    </tree>
+                </field>
+            </record>
+        <!-- Tree view end -->
+
+        <!-- From view start -->
+        <record id= "view_dynamic_product_form" model="ir.ui.view">
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="name">dynamic.product.tree</field>
+            <field name="model">product.template</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <field name="type" position="before">
+                    <field name="combined_name"/>
+                    <field name="ring_spun_count"/> 
+                    <field name="twist_count"/>
+                    <field name="compact_state"/>
+                    <field name="process"/>
+                    <field name="trade_name"/>
+                    <field name="slub"/>
+                    <field name="cotton_type"/>
+                    <field name="cotton_percentage"/>
+                    <label string=" "/><label string=" "/>
+                    <field name="dyed_cotton_percentage"/> 
+                    <field name="white_viscose_percentage"/>
+                    <field name="dyed_viscose_percentage"/>
+                    <field name="polyester_percentage"/>
+                    <field name="linen_percentage"/>
+                    <field name="tencel_percentage"/>
+                    <field name="modal_percentage"/>
+                    <label string=" "/><label string=" "/>
+                    <field name="contamination"/>
+                    <field name="yarn_process"/> 
+                    <field name="popularity"/>
+                    <field name="hs_code"/>
+                    <label string=" "/><label string=" "/>   
+                </field>
+            </field>
+        </record> 
+        <!-- From view end -->
+
+        <!-- <search start> -->
+            <record id="view_commercial_invoices_search" model="ir.ui.view">
+                <field name="name">dynamic.product.search</field>
+                <field name="model">product.template</field>
+                <field name="priority" eval="8" />
+                <field name="arch" type="xml">
+                    <search string="Commercial_Invoices">
+                        <field name="combined_name"/>
+                        <field name="hs_code"/>
+                        <field name="ring_spun_count"/> 
+                        <field name="twist_count"/>
+                        <field name="compact_state"/>
+                        <field name="process"/>
+                        <field name="trade_name"/>
+                        <field name="slub"/>
+                        <field name="cotton_type"/>
+                        <field name="cotton_percentage"/>
+                        <field name="dyed_cotton_percentage"/> 
+                        <field name="white_viscose_percentage"/>
+                        <field name="dyed_viscose_percentage"/>
+                        <field name="polyester_percentage"/>
+                        <field name="linen_percentage"/>
+                        <field name="tencel_percentage"/>
+                        <field name="modal_percentage"/>
+                        <field name="contamination"/>
+                        <field name="yarn_process"/> 
+                        <field name="popularity"/>
+                    </search>
+                </field>
+            </record>
+        <!-- <search end> -->
+
+        <record id="act_open_dynamic_product_view" model="ir.actions.act_window">
+            <field name="name">Daynamic Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref='view_commercial_invoices_search'/>
+            <field name="view_type">form</field> 
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click here to create a new product.
+                </p>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window.view" id="act_open_dynamic_product_view_form">
+                <field name="act_window_id" ref="act_open_dynamic_product_view" />
+                <field name="sequence" eval="20" />
+                <field name="view_mode">form</field>
+                <field name="view_id" ref="view_dynamic_product_form" />
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_dynamic_product_view_tree">
+                <field name="act_window_id" ref="act_open_dynamic_product_view" />
+                <field name="sequence" eval="10" />
+                <field name="view_mode">tree</field>
+                <field name="view_id" ref="view_dynamic_product_tree" />
+        </record>
+
+
+        <!-- 
+        <menuitem action="dynamicProduct.product_template_action_dy" id="menu_product_template_action_dynamicProduct" sequence="14"/>  -->
+
+        <!-- Creat child menu / Action menu -->
+        <menuitem action="act_open_dynamic_product_view" name="Create Daynamic Product" id="custom_child_menu1" parent="custom_sub_menu"  sequence="1"/> 
+
+    </data>
+</openerp>
