@@ -25,7 +25,7 @@ class Dynamic_product_template(models.Model):
 	popularity = fields.Selection([('Normal', 'Normal'),('Popular', 'Popular')],'Popularity')
 	yarn_process = fields.Selection([('Ring', 'Ring'),('Open End', 'Open End'),('Vortex', 'Vortex')],'Yarn Process')
 
-	hs_code = fields.Char(string='H.S Code', required= True, size=255)
+	hs_code = fields.Char(string='H.S Code', size=255)
 
 	@api.depends('ring_spun_count','twist_count','compact_state','process','trade_name','slub','cotton_percentage','cotton_type','dyed_cotton_percentage','linen_percentage','tencel_percentage','modal_percentage','contamination','popularity','yarn_process', 'dyed_cotton_percentage', 'white_viscose_percentage', 'dyed_viscose_percentage', 'polyester_percentage', 'linen_percentage', 'tencel_percentage', 'modal_percentage', 'hs_code')
 
@@ -62,9 +62,37 @@ class Dynamic_product_template(models.Model):
 			elif self.modal_percentage:
 				self.combined_name = str(self.ring_spun_count) + '/' + str(self.twist_count) + ' ' + str(self.compact_state) + ' ' + str(self.process) + ' ' + str(self.trade_name) + ' ' + str(self.slub) + ' (Cotton ' + str(self.cotton_percentage) + '%-' + str(self.cotton_type) + ' + Modal ' + str(self.modal_percentage) + '%' + ') ' + str(self.contamination) + ' ' + str(self.yarn_process) + ' ( H.S Code: ' + str(self.hs_code) + ' ) '
 				self.name= self.combined_name
+
+			elif self.ring_spun_count:
+				self.combined_name = str(self.ring_spun_count) + '/' + str(self.twist_count) + ' ' + str(self.compact_state) + ' ' + str(self.process) + ' ' + str(self.trade_name) + ' ' + str(self.slub) + ' (Cotton ' + str(self.cotton_percentage) + '%-' + str(self.cotton_type) + ' + Modal ' + str(self.modal_percentage) + '%' + ') ' + str(self.contamination) + ' ' + str(self.yarn_process) + ' ( H.S Code: ' + str(self.hs_code) + ' ) '
+				self.name= self.combined_name
+
+			elif self.twist_count:
+				self.combined_name = str(self.ring_spun_count) + '/' + str(self.twist_count) + ' ' + str(self.compact_state) + ' ' + str(self.process) + ' ' + str(self.trade_name) + ' ' + str(self.slub) + ' (Cotton ' + str(self.cotton_percentage) + '%-' + str(self.cotton_type) + ' + Modal ' + str(self.modal_percentage) + '%' + ') ' + str(self.contamination) + ' ' + str(self.yarn_process) + ' ( H.S Code: ' + str(self.hs_code) + ' ) '
+				self.name= self.combined_name
+
+			elif self.compact_state:
+				self.combined_name = str(self.ring_spun_count) + '/' + str(self.twist_count) + ' ' + str(self.compact_state) + ' ' + str(self.process) + ' ' + str(self.trade_name) + ' ' + str(self.slub) + ' (Cotton ' + str(self.cotton_percentage) + '%-' + str(self.cotton_type) + ' + Modal ' + str(self.modal_percentage) + '%' + ') ' + str(self.contamination) + ' ' + str(self.yarn_process) + ' ( H.S Code: ' + str(self.hs_code) + ' ) '
+				self.name= self.combined_name
+
+			elif self.process:
+				self.combined_name = str(self.ring_spun_count) + '/' + str(self.twist_count) + ' ' + str(self.compact_state) + ' ' + str(self.process) + ' ' + str(self.trade_name) + ' ' + str(self.slub) + ' (Cotton ' + str(self.cotton_percentage) + '%-' + str(self.cotton_type) + ' + Modal ' + str(self.modal_percentage) + '%' + ') ' + str(self.contamination) + ' ' + str(self.yarn_process) + ' ( H.S Code: ' + str(self.hs_code) + ' ) '
+				self.name= self.combined_name
+
+			elif self.trade_name:
+				self.combined_name = str(self.ring_spun_count) + '/' + str(self.twist_count) + ' ' + str(self.compact_state) + ' ' + str(self.process) + ' ' + str(self.trade_name) + ' ' + str(self.slub) + ' (Cotton ' + str(self.cotton_percentage) + '%-' + str(self.cotton_type) + ' + Modal ' + str(self.modal_percentage) + '%' + ') ' + str(self.contamination) + ' ' + str(self.yarn_process) + ' ( H.S Code: ' + str(self.hs_code) + ' ) '
+				self.name= self.combined_name		
+
+			elif self.slub:
+				self.combined_name = str(self.ring_spun_count) + '/' + str(self.twist_count) + ' ' + str(self.compact_state) + ' ' + str(self.process) + ' ' + str(self.trade_name) + ' ' + str(self.slub) + ' (Cotton ' + str(self.cotton_percentage) + '%-' + str(self.cotton_type) + ' + Modal ' + str(self.modal_percentage) + '%' + ') ' + str(self.contamination) + ' ' + str(self.yarn_process) + ' ( H.S Code: ' + str(self.hs_code) + ' ) '
+				self.name= self.combined_name
+
+			elif self.cotton_type:
+				self.combined_name = str(self.ring_spun_count) + '/' + str(self.twist_count) + ' ' + str(self.compact_state) + ' ' + str(self.process) + ' ' + str(self.trade_name) + ' ' + str(self.slub) + ' (Cotton ' + str(self.cotton_percentage) + '%-' + str(self.cotton_type) + ' + Modal ' + str(self.modal_percentage) + '%' + ') ' + str(self.contamination) + ' ' + str(self.yarn_process) + ' ( H.S Code: ' + str(self.hs_code) + ' ) '
+				self.name= self.combined_name		
 		
 			else:
 				self.combined_name = str(self.ring_spun_count) + '/' + str(self.twist_count) + ' ' + str(self.compact_state) + ' ' + str(self.process) + ' ' + str(self.trade_name) + ' ' + str(self.slub) + ' (Cotton ' + str(self.cotton_percentage) + '%-' + str(self.cotton_type) + ') ' + str(self.contamination) + ' ' + str(self.yarn_process) + ' ( H.S Code: ' + str(self.hs_code) + ' ) '
-				self.name= " "	
+				#self.name= " "	
 
 	combined_name = fields.Char(compute=concatenate_custom_fields,store=True)

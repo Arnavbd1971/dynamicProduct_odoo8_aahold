@@ -14,7 +14,8 @@
                 <field name="priority" eval="8" />
                 <field name="arch" type="xml">
                     <tree string="Daynamic_Product" default_order="id desc">
-                        <field name="combined_name"/>
+                        <field name="name"/>
+                        <!-- <field name="combined_name"/> -->
                         <field name="hs_code"/>
                         <field name="list_price"/>
                         <field name="ring_spun_count"/> 
@@ -35,31 +36,33 @@
             <field name="model">product.template</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
-                <field name="type" position="before">
-                    <field name="combined_name"/>
-                    <field name="ring_spun_count"/> 
-                    <field name="twist_count"/>
-                    <field name="compact_state"/>
-                    <field name="process"/>
-                    <field name="trade_name"/>
-                    <field name="slub"/>
-                    <field name="cotton_type"/>
-                    <field name="cotton_percentage"/>
-                    <label string=" "/><label string=" "/>
-                    <field name="dyed_cotton_percentage"/> 
-                    <field name="white_viscose_percentage"/>
-                    <field name="dyed_viscose_percentage"/>
-                    <field name="polyester_percentage"/>
-                    <field name="linen_percentage"/>
-                    <field name="tencel_percentage"/>
-                    <field name="modal_percentage"/>
-                    <label string=" "/><label string=" "/>
-                    <field name="contamination"/>
-                    <field name="yarn_process"/> 
-                    <field name="popularity"/>
-                    <field name="hs_code"/>
-                    <label string=" "/><label string=" "/>   
-                </field>
+                <notebook>
+                    <page string='Dynamic Product'>
+                        <group>
+                            <field name="combined_name"/>
+                            <field name="ring_spun_count"/> 
+                            <field name="twist_count"/>
+                            <field name="compact_state"/>
+                            <field name="process"/>
+                            <field name="trade_name"/>
+                            <field name="slub"/>
+                            <field name="cotton_type"/>
+                            <field name="cotton_percentage"/>
+                            <field name="dyed_cotton_percentage"/> 
+                            <field name="white_viscose_percentage"/>
+                            <field name="dyed_viscose_percentage"/>
+                            <field name="polyester_percentage"/>
+                            <field name="linen_percentage"/>
+                            <field name="tencel_percentage"/>
+                            <field name="modal_percentage"/>
+                            <field name="contamination"/>
+                            <field name="yarn_process"/> 
+                            <field name="popularity"/>
+                            <field name="hs_code"/>
+                        </group>
+                    </page>
+                </notebook>  
+                
             </field>
         </record> 
         <!-- From view end -->
